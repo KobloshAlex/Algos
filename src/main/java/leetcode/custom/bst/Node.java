@@ -1,13 +1,20 @@
 package leetcode.custom.bst;
 
 class Node {
-  int value;
+  int key;
+  String value;
   Node left;
   Node right;
 
-  Node(int value) {
+  public Node(int key, String value) {
+    this.key = key;
     this.value = value;
-    right = null;
-    left = null;
+    this.left = null;
+    this.right = null;
+  }
+
+  @Override
+  public String toString() {
+    return "Node{" + "key=" + key + ", value='" + value + '\'' + '}';
   }
 }

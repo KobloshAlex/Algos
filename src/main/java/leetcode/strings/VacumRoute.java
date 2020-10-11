@@ -19,6 +19,7 @@ Ex: Given the following strings...
       int upDown = 0;
       int leftRight = 0;
 
+
     for (int i = 0; i < s.length(); i++){
       if(s.charAt(i) == 'L') {
           leftRight++;
