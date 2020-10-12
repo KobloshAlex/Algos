@@ -10,16 +10,16 @@ public class IntegerToRoman {
     System.out.println(1431 % 10);
   }
 
-  public static final String doCalc(int number) {
+  public static final String doCalc(int num) {
 
     String[] units = new String[] {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
     String[] tens = new String[] {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
     String[] hundreds = new String[] {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
     String[] thousands = new String[] {"", "M", "MM", "MMM"};
 
-    return thousands[(number % 10000) / 1000]
-        + hundreds[(number % 1000) / 100]
-        + tens[(number % 100) / 10]
-        + units[number % 10];
+    return thousands[(num % 10000) / 1000]
+        + hundreds[(num % 1000) / 100]
+        + tens[(num % 100) / 10]
+        + units[num % 10];
   }
 }
