@@ -8,13 +8,12 @@ public class ValidPalindrome {
 
   public static final boolean doCalc(String s) {
 
-    StringBuilder fixedStringBuilder = new StringBuilder();
+    StringBuilder fixedString = new StringBuilder();
     for (char c : s.toLowerCase().toCharArray()) {
       if (Character.isLetter(c) || Character.isDigit(c)) {
-        fixedStringBuilder.append(c);
+        fixedString.append(c);
       }
     }
-    String fixedString = fixedStringBuilder.toString();
     System.out.println(fixedString);
 
     int i = 0;

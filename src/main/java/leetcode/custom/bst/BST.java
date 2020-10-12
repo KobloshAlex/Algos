@@ -2,13 +2,15 @@ package leetcode.custom.bst;
 
 import java.util.Stack;
 
+import static java.lang.Math.max;
+
 public class BST {
 
-  private Node root;
+  Node root;
 
-  public void insert(int key, String value) {
+  public void insert(Node node) {
 
-    Node newNode = new Node(key, value);
+    Node newNode = new Node(node.value);
 
     if (root == null) {
       root = newNode;
@@ -19,7 +21,7 @@ public class BST {
 
       while (true) {
         parent = current;
-        if (key < current.key) {
+        if (node.value < current.value) {
           current = current.left;
           if (current == null) {
             parent.left = newNode;
@@ -66,9 +68,9 @@ public class BST {
     boolean isLeftChild = false;
 
     // search to find the node with the key
-    while (current.key != key) {
+    while (current.value != key) {
       parent = current;
-      if (key < current.key) {
+      if (key < current.value) {
         current = current.left;
         isLeftChild = true;
       } else {
@@ -111,22 +113,20 @@ public class BST {
       } else {
         parent.right = nodeToDelete.right;
       }
-    } //if node has two children
+    } // if node has two children
     else {
 
       Node successor = getSuccessor(nodeToDelete);
 
-      //connect parent of nodeToDelete to successor;
-      if(nodeToDelete == root) {
+      // connect parent of nodeToDelete to successor;
+      if (nodeToDelete == root) {
         root = successor;
-      } else if(isLeftChild) {
+      } else if (isLeftChild) {
         parent.left = successor;
       } else {
         parent.right = successor;
       }
       successor.left = nodeToDelete.left;
-
-
     }
     return true;
   }
@@ -138,13 +138,13 @@ public class BST {
 
     Node current = nodeToDelete.right; // go to the right child one time
 
-    while (current != null) { //going left of the tree until has no left nodes
+    while (current != null) { // going left of the tree until has no left nodes
       successorParent = successor;
       successor = current;
       current = current.left;
     }
-    //if successor is not a right child
-    if(successor != nodeToDelete.right) {
+    // if successor is not a right child
+    if (successor != nodeToDelete.right) {
       successorParent.left = successor.right;
       successor.right = nodeToDelete.right;
     }
@@ -159,20 +159,20 @@ public class BST {
     boolean isRowEmpty = false;
     System.out.println("......................................................");
 
-    while(!isRowEmpty) {
+    while (!isRowEmpty) {
       Stack localStack = new Stack();
       isRowEmpty = true;
-      for(int j=0; j<nBlanks; j++) {
+      for (int j = 0; j < nBlanks; j++) {
         System.out.print(" ");
       }
 
-      while(!globalStack.isEmpty()) {
-        Node temp = (Node)globalStack.pop();
-        if(temp != null) {
-          System.out.print(temp.key);
+      while (!globalStack.isEmpty()) {
+        Node temp = (Node) globalStack.pop();
+        if (temp != null) {
+          System.out.print(temp.value);
           localStack.push(temp.left);
           localStack.push(temp.right);
-          if(temp.left != null || temp.right != null) {
+          if (temp.left != null || temp.right != null) {
             isRowEmpty = false;
           }
         } else {
@@ -181,18 +181,74 @@ public class BST {
           localStack.push(null);
         }
 
-        for(int j=0; j<nBlanks*2-2; j++) {
+        for (int j = 0; j < nBlanks * 2 - 2; j++) {
           System.out.print(" ");
         }
       }
 
       System.out.println();
-      nBlanks = nBlanks/2;
+      nBlanks = nBlanks / 2;
 
-      while(!localStack.isEmpty())
-        globalStack.push( localStack.pop() );
+      while (!localStack.isEmpty()) globalStack.push(localStack.pop());
     }
-    System.out.println( "......................................................");
+    System.out.println("......................................................");
+  }
 
+  public int maxDepth(Node node) {
+    if (node == null) {
+      return 0;
+    }
+    int right = maxDepth(node.right);
+    int left = maxDepth(node.left);
+
+    return 1 + max(left, right);
+  }
+
+  public boolean isSymmetric(Node root) {
+    if (root == null) {
+      return false;
+    }
+    return checkSymmetric(root.left, root.right);
+  }
+
+  private boolean checkSymmetric(Node left, Node right) {
+    if (left == null || right == null) {
+      return left == right;
+    }
+
+    if (left.value != right.value) {
+      return false;
+    }
+
+    return checkSymmetric(left.left, right.right) && checkSymmetric(left.right, right.left);
+  }
+
+  // TODO: 10/11/2020 fix
+  public Node buildBST(int[] array) {
+    if(array.length == 0) {
+      return null;
+    }
+  return constructBST(array, 0, array.length - 1);
+  }
+
+  public Node constructBST(int[] array, int left, int right) {
+
+    if(left > right) {
+      return null;
+    }
+    int midPoint = left + (right - left) / 2;
+
+    Node node = new Node(array[midPoint]);
+    node.left = constructBST(array, left, midPoint - 1);
+    node.right = constructBST(array, midPoint + 1  , right);
+
+    return node;
+  }
+
+  @Override
+  public String toString() {
+    return "BST{" +
+            "root=" + root +
+            '}';
   }
 }
