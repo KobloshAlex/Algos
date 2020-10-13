@@ -1,4 +1,4 @@
-package leetcode.custom.singlylinkedlist;
+package leetcode.custom.linkedlist.singlylinkedlist;
 
 public class SingleLinkedList {
   private Node first;
@@ -9,7 +9,7 @@ public class SingleLinkedList {
     return first == null;
   }
 
-  // insert at the begining at the list
+  // insert at the beginning at the list
 
   public void insertFirst(int data) {
     Node node = new Node();

@@ -31,20 +31,4 @@ public class HowManyDublicates {
 
     return map;
   }
-
-  public int Solution(int[] A) {
-    int n = A.length;
-    int c = 0;
-    for (int i = 0; i < n - 1; i++) {
-      if (A[i] == A[i + 1]) {
-        c++;
-        if (A[i + 1] == 1) {
-          A[i + 1] = 0;
-        } else {
-          A[i + 1] = 1;
-        }
-      }
-    }
-    return c;
-  }
 }

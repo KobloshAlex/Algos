@@ -1,4 +1,4 @@
-package leetcode.custom.singlylinkedlist;
+package leetcode.custom.linkedlist.singlylinkedlist;
 
 public class Node {
   public int data;

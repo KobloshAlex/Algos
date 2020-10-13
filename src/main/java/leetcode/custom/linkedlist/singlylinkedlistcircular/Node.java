@@ -1,4 +1,4 @@
-package leetcode.custom.singlylinkedlistcircular;
+package leetcode.custom.linkedlist.singlylinkedlistcircular;
 
 public class Node {
   public int data;
