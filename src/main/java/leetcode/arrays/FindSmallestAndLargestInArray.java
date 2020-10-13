@@ -1,4 +1,4 @@
-package problems;
+package leetcode.arrays;
 
 public class FindSmallestAndLargestInArray {
   public static void main(String[] args) {

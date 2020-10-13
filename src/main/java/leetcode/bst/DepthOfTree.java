@@ -1,4 +1,4 @@
-package algoexpert.tree;
+package leetcode.bst;
 
 public class DepthOfTree {
 

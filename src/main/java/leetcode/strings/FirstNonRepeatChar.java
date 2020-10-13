@@ -1,4 +1,4 @@
-package problems;
+package leetcode.strings;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
