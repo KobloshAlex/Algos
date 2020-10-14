@@ -4,40 +4,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Spiral2DArray {
-  public static List<Integer> spiralTraverse(int[][] array) {
-    // Write your code here.
-    if (array.length == 0) return new ArrayList<>();
+  public static List<Integer> spiralTraverse(int[][] matrix) {
+    List<Integer> res = new ArrayList<Integer>();
 
-    final ArrayList<Integer> result = new ArrayList<>();
-    int startRow = 0;
-    int endRow = array.length - 1;
-    int startCol = 0;
-    int endCol = array[0].length - 1;
-
-    while (startRow <= endRow && startCol <= endCol) {
-      for (int col = startCol; col <= endCol; col++) {
-        result.add(array[startCol][col]);
-      }
-
-      for (int row = startRow + 1; row <= endRow; row++) {
-        result.add(array[row][endCol]);
-      }
-
-      for (int col = endCol - 1; col >= endCol; col--) {
-        if (startRow == endRow) break;
-        result.add(array[endRow][col]);
-      }
-
-      for (int row = endRow - 1; row > startRow; row--) {
-        if (startCol == endCol) break;
-        result.add(array[row][startCol]);
-      }
-
-      startRow++;
-      endRow--;
-      startCol++;
-      endCol--;
+    if (matrix.length == 0) {
+      return res;
     }
-    return result;
+
+    int rowBegin = 0;
+    int rowEnd = matrix.length - 1;
+    int colBegin = 0;
+    int colEnd = matrix[0].length - 1;
+
+    while (rowBegin <= rowEnd && colBegin <= colEnd) {
+      // Traverse Right
+      for (int j = colBegin; j <= colEnd; j++) {
+        res.add(matrix[rowBegin][j]);
+      }
+      rowBegin++;
+
+      // Traverse Down
+      for (int j = rowBegin; j <= rowEnd; j++) {
+        res.add(matrix[j][colEnd]);
+      }
+      colEnd--;
+
+      if (rowBegin <= rowEnd) {
+        // Traverse Left
+        for (int j = colEnd; j >= colBegin; j--) {
+          res.add(matrix[rowEnd][j]);
+        }
+      }
+      rowEnd--;
+
+      if (colBegin <= colEnd) {
+        // Traver Up
+        for (int j = rowEnd; j >= rowBegin; j--) {
+          res.add(matrix[j][colBegin]);
+        }
+      }
+      colBegin++;
+    }
+
+    return res;
   }
 }
