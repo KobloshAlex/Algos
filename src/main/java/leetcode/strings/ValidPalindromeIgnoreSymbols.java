@@ -1,6 +1,6 @@
 package leetcode.strings;
 
-public class ValidPalindrome {
+public class ValidPalindromeIgnoreSymbols {
 
   public static void main(String[] args) {
     System.out.println(doCalc("A man, a plan, a canal: Panama"));
