@@ -31,11 +31,11 @@ public class FirstUniqueChar {
         map.put(chars[i], -1);
       }
     }
-    int min  =Integer.MAX_VALUE;
+    int min = Integer.MAX_VALUE;
     for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-        if(entry.getValue() > -1 && entry.getValue() < min) {
-            min = entry.getValue();
-        }
+      if (entry.getValue() > -1 && entry.getValue() < min) {
+        min = entry.getValue();
+      }
     }
     return min == Integer.MAX_VALUE ? 0 : min;
   }
